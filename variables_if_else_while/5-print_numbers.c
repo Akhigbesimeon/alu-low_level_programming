@@ -1,20 +1,20 @@
 #include <stdio.h>
 
 /**
- * main - Print all single digit numbers of base 10
- * starting from 0, followed by a new line.
+ * main - Entry point of the program
  *
  * Return: Always 0 (Success)
  */
 int main(void)
 {
-	int digit;
+int number;
 
-	for (digit = 0; digit < 10; digit++)
-		printf("%d", digit);
+for (number = 0; number < 10; number++)
+{
+printf("%d", number);
+}
 
-	
-	printf("\n");
-	
-	return (0);
+putchar('\n');
+
+return (0);
 }
