@@ -1,21 +1,21 @@
 #include "main.h"
-#include <stdio.h>
+
 /**
- * puts2 -  function to move every other two
+ * puts2 - prints every other character of a string,
+ * starting with the first character, followed by a new line
+ * @str: pointer to the string
  *
- * @str: pointer to characters
- * Return: none
+ * Return: void
  */
 void puts2(char *str)
 {
-int i;
-if (str == NULL)
-{
-return;
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+	{
+		if (i % 2 == 0)
+			_putchar(str[i]);
+	}
+	_putchar('\n');
 }
-for (i = 0; str[i] != '\0'; i += 2)
-{
-_putchar(str[i]);
-}
-_putchar('\n');
-}
+
