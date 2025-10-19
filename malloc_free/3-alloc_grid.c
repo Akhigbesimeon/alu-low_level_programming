@@ -1,46 +1,44 @@
 #include <stdlib.h>
+#include "main.h"
+
 /**
- * str_concat - concat two strings
- * @s1: string 1
- * @s2: string 2
- * Return: string.
+ * alloc_grid - returns a pointer to a 2D array of integers
+ * @width: width of the grid
+ * @height: height of the grid
+ *
+ * Return: pointer to the 2D array, or NULL on failure
  */
-char *str_concat(char *s1, char *s2)
+int **alloc_grid(int width, int height)
 {
-char *concat;
-int i, j, len1 = 0, len2 = 0;
+    int **grid;
+    int i, j;
 
-if (s1 == NULL)
-{
-s1 = "";
-}
-if (s2 == NULL)
-{
-s2 = "";
+    if (width <= 0 || height <= 0)
+        return (NULL);
+
+    grid = malloc(sizeof(int *) * height);
+    if (grid == NULL)
+        return (NULL);
+
+    for (i = 0; i < height; i++)
+    {
+        grid[i] = malloc(sizeof(int) * width);
+        if (grid[i] == NULL)
+        {
+            /* Free any previously allocated rows to prevent memory leaks */
+            while (i > 0)
+            {
+                i--;
+                free(grid[i]);
+            }
+            free(grid);
+            return (NULL);
+        }
+
+        for (j = 0; j < width; j++)
+            grid[i][j] = 0;
+    }
+
+    return (grid);
 }
 
-while (s1[len1])
-{
-len1++;
-}
-while (s2[len2])
-{
-len2++;
-}
-concat = malloc(sizeof(char) * (len1 + len2 + 1));
-if (concat == NULL)
-{
-return (NULL);
-}
-
-for (i = 0; i < len1; i++)
-{
-concat[i] = s1[i];
-}
-for (j = 0; j < len2; j++)
-{
-concat[i + j] = s2[j];
-}
-concat[i + j] = '\0';
-return (concat);
-}
